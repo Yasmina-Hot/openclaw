@@ -1,0 +1,70 @@
+# OPENROCK policy example
+# Copy to .openrock/policy.toml and adjust for your workspace.
+
+[profile]
+name = "default"
+mode = "workspace-write"
+
+[filesystem]
+read = ["."]
+write = ["."]
+deny = [
+  "~/.ssh",
+  "~/.gnupg",
+  "~/.aws",
+  "~/.config/gh",
+  "~/.openclaw/credentials",
+  "~/.openrock/credentials"
+]
+
+[network]
+mode = "ask"
+allow_domains = [
+  "github.com",
+  "api.github.com",
+  "npmjs.com",
+  "registry.npmjs.org",
+  "docs.github.com"
+]
+deny_private_networks = true
+
+[commands]
+mode = "ask"
+allow = [
+  "git status",
+  "git diff",
+  "git log",
+  "pnpm install",
+  "pnpm build",
+  "pnpm test",
+  "pnpm check",
+  "npm test"
+]
+deny_patterns = [
+  "rm -rf /",
+  "sudo rm",
+  "curl * | sh",
+  "wget * | sh",
+  "npm publish",
+  "pnpm publish",
+  "git push --force",
+  "git reset --hard"
+]
+
+[secrets]
+scan_before_commit = true
+scan_before_network = true
+redact_logs = true
+
+[agent]
+plan_before_edit = true
+checkpoint_before_edit = true
+require_human_approval_for_high_risk = true
+max_autonomous_command_retries = 2
+
+[models]
+default_route = "balanced"
+private_route = "local"
+review_route = "best"
+cheap_route = "cheap"
+vision_route = "vision"
