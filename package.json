@@ -14,7 +14,8 @@
     "url": "git+https://github.com/openclaw/openclaw.git"
   },
   "bin": {
-    "openclaw": "openclaw.mjs"
+    "openclaw": "openclaw.mjs",
+    "openrock": "openrock.mjs"
   },
   "directories": {
     "doc": "docs",
@@ -24,6 +25,7 @@
     "CHANGELOG.md",
     "LICENSE",
     "openclaw.mjs",
+    "openrock.mjs",
     "README-header.png",
     "README.md",
     "assets/",
@@ -101,6 +103,7 @@
     "moltbot:rpc": "node scripts/run-node.mjs agent --mode rpc --json",
     "openclaw": "node scripts/run-node.mjs",
     "openclaw:rpc": "node scripts/run-node.mjs agent --mode rpc --json",
+    "openrock": "node openrock.mjs",
     "plugins:sync": "node --import tsx scripts/sync-plugin-versions.ts",
     "prepack": "pnpm build && pnpm ui:build",
     "prepare": "command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath git-hooks || exit 0",
